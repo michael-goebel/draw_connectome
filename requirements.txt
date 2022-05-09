@@ -1,0 +1,7 @@
+matplotlib
+nibabel==3.2.2  # this is the one I used, feel free to try others
+numpy
+Pillow
+tifffile
+tqdm
+
