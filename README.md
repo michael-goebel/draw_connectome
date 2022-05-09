@@ -22,10 +22,10 @@ mv ${PATH_TO_DOWNLOADS}/whole_brain_MNI.trk .  # Move sample trk file into repo 
       2. Check that the .so file is created. Something similar to ```draw_lines.cpython-38-x86_64-linux-gnu.so```
   2. Run ```python test_draw.py```
       1. This should plot two thick line segments, and display the plot
-      2. Check that this simple example works, then move on to the actual connectome example
+      2. Check that this simple example works (see imgs/ directory), then move on to the actual connectome example
   3. Run ```python convert_trk_to_tiff.py```
       1. This may take up to a minute to run.
-      2. Will save a figure, showing different projections of the connectome. Check this before moving on to the next step.
+      2. Will save a figure, showing different projections of the connectome. Check this before moving on to the next step (again compare to file in imgs/ directory).
       3. Should also save a tiff file. This is the high resolution 3D image.
 
 ## Upload the output to BisQue
