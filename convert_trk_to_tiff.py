@@ -20,7 +20,7 @@ fname = 'whole_brain_MNI.trk'
 scale = 2
 
 # The radius of the track line, in voxels
-line_weight = 1
+line_weight = 0.8
 
 trk = nib.streamlines.load(fname)
 
@@ -44,8 +44,9 @@ for stream in tqdm(trk.streamlines):
 # This code block checks the different views.
 fig, axes = plt.subplots(1,3)
 for i in range(3):
-    axes[i].imshow(X.max(i))
-    Image.fromarray((255*X.max(i)).astype('uint8')).save(f'brain{i}.png')  
+    X_proj = np.mean(X, axis=i)
+    X /= X.max()
+    axes[i].imshow(X_proj)
 fig.savefig('brain_fig.png')
 
 # Save the output drawing as an OME-BigTIFF. This is the format which works

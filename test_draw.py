@@ -15,4 +15,6 @@ draw_lines(X, points, 10)
 fig, axes = plt.subplots(1)
 axes.imshow(X[:,:,10,:])
 
+fig.savefig('test_draw_fig.png')
 plt.show()
+
