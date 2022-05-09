@@ -13,7 +13,7 @@ cd draw_connectome
 virtualenv -p python3 py3
 source py3/bin/activate
 pip install -r requirements.txt
-mv ${PATH_TO_DOWNLOADS}/whole_brain_MNI.trk .
+mv ${PATH_TO_DOWNLOADS}/whole_brain_MNI.trk .  # Move sample trk file into repo directory
 ```
 
 ## Compile FORTRAN and run code
