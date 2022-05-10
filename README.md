@@ -29,6 +29,6 @@ mv ${PATH_TO_DOWNLOADS}/whole_brain_MNI.trk .  # Move sample trk file into repo 
       3. Should also save a tiff file. This is the high resolution 3D image.
 
 ## Upload the output to BisQue
-  1. Log into [BisQue](bisque2.ece.ucsb.edu)
+  1. Log into [BisQue](https://bisque2.ece.ucsb.edu)
   2. Upload the tiff file
   3. View the tiff file using all 3 viewers in BisQue - 2D slices, 3D volume, and movie player
