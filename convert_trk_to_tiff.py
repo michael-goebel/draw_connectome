@@ -17,7 +17,7 @@ fname = 'whole_brain_MNI.trk'
 # to the original scan size. This will allow for better resolution on the
 # lines. Note that the tracks in the original list are floats, and have 
 # sub-voxel values.
-scale = 2
+scale = 3
 
 # The radius of the track line, in voxels
 line_weight = 0.8
@@ -52,11 +52,13 @@ fig.savefig('brain_fig.png')
 # Save the output drawing as an OME-BigTIFF. This is the format which works
 # in BisQue
 X_uint8 = np.array(255*X, dtype='uint8', order='C')
+print(X.shape)
 tifffile.imwrite(
     'brain.ome.tiff',
     X_uint8,
     bigtiff=True,
     photometric='RGB',
+    compression='zlib',
     metadata={
         'axes': 'ZYXS',
         'SignificantBits': 8,
