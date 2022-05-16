@@ -17,10 +17,10 @@ fname = 'whole_brain_MNI.trk'
 # to the original scan size. This will allow for better resolution on the
 # lines. Note that the tracks in the original list are floats, and have 
 # sub-voxel values.
-scale = 3
+scale = 4
 
 # The radius of the track line, in voxels
-line_weight = 0.8
+line_weight = 1
 
 trk = nib.streamlines.load(fname)
 
@@ -38,7 +38,7 @@ for stream in tqdm(trk.streamlines):
     # This line below is important. Applies scaling of coordinates, and
     # converts to a type acceptable by the fortran function.
     stream = np.asarray(scale*stream, dtype='float64', order='F')
-    draw_lines(X, stream, scale)        
+    draw_lines(X, stream, line_weight)        
 
 
 # This code block checks the different views.
@@ -49,21 +49,25 @@ for i in range(3):
     axes[i].imshow(X_proj)
 fig.savefig('brain_fig.png')
 
+
 # Save the output drawing as an OME-BigTIFF. This is the format which works
 # in BisQue
 X_uint8 = np.array(255*X, dtype='uint8', order='C')
-print(X.shape)
-tifffile.imwrite(
-    'brain.ome.tiff',
-    X_uint8,
-    bigtiff=True,
-    photometric='RGB',
-    compression='zlib',
-    metadata={
-        'axes': 'ZYXS',
-        'SignificantBits': 8,
-    }
-)
+
+Image.fromarray(X_uint8[300]).save('slice.png')
+
+for i in range(3):
+    tifffile.imwrite(
+        f'brain_{i}.ome.tiff',
+        np.swapaxes(X_uint8, 0, i),
+        bigtiff=True,
+        photometric='RGB',
+        compression='zlib',
+        metadata={
+            'axes': 'ZYXS',
+            'SignificantBits': 8,
+        }
+    )
 
 
 
